@@ -2709,8 +2709,10 @@ class PHP_CodeSniffer_File
     public function isAnonymousFunction($stackPtr)
     {
         $tokenCode = $this->_tokens[$stackPtr]['code'];
-        if ($tokenCode !== T_FUNCTION) {
-            throw new PHP_CodeSniffer_Exception('Token type is not T_FUNCTION');
+        if ($tokenCode !== T_FUNCTION
+            && $tokenCode !== T_CLOSURE
+        ) {
+            throw new PHP_CodeSniffer_Exception('Token type is not T_FUNCTION or T_CLOSURE');
         }
 
         if (isset($this->_tokens[$stackPtr]['parenthesis_opener']) === false) {
@@ -2937,8 +2939,10 @@ class PHP_CodeSniffer_File
      */
     public function getMethodProperties($stackPtr)
     {
-        if ($this->_tokens[$stackPtr]['code'] !== T_FUNCTION) {
-            throw new PHP_CodeSniffer_Exception('$stackPtr must be of type T_FUNCTION');
+        if ($this->_tokens[$stackPtr]['code'] !== T_FUNCTION
+            && $this->_tokens[$stackPtr]['code'] !== T_CLOSURE
+        ) {
+            throw new PHP_CodeSniffer_Exception('$stackPtr must be of type T_FUNCTION or T_CLOSURE');
         }
 
         $valid = array(

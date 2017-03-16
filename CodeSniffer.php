@@ -73,7 +73,7 @@ class PHP_CodeSniffer
      *
      * @var string
      */
-    const VERSION = '2.8.1';
+    const VERSION = '2.8.1-tia-static-anonymous-fn';
 
     /**
      * Package stability; either stable, beta or alpha.
